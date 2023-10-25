@@ -10,12 +10,8 @@
     <div id="app">
                 
     </div>
-        <ul>
-            <li> <a href="button.html">boton</a> </li>
-            <li> <a href="inputs.html">Inputs reactivos</a></li>
-            <li> <a href="propiedadComputada.html">Propiedades Computadas</a></li>
-            <li> <a href="watcher.html">watcher</a></li>
-        </ul>
+    
+
     <script>
         Vue.createApp({
             data(){
@@ -25,9 +21,19 @@
                     img:"https://fastly.picsum.photos/id/13/2500/1667.jpg?hmac=SoX9UoHhN8HyklRA4A3vcCWJMVtiBXUg0W4ljWTor7s",
                     img_alt:"Imagen de ejemplo",
                     attr:"src",
+                    counter:0
                 }
+
             },
-            template:'<img v-bind:["src"]="img" vbind:alt="img_alt" width="200" height="200"></img>'
+            methods:{
+                    increment(){
+                    },
+                    submit(){
+                        //e.preventDefault();
+                        this.counter++
+                    }
+            },
+            template:'<form v-on:submit.prevent="submit"><button v-on:click="increment">{{counter}}</button></form>'
         }).mount('#app')
     </script>
 </body>

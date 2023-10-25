@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .open{
+            background-color: #b5e7a0;
+        }
+
+        .closed{
+            background-color: #eca1a6;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"></div>
+    <script>
+        const vm=Vue.createApp({
+            data(){
+                return {
+                    text:"Puerta cerrada",
+                    open:false,
+                    username:""                 
+                }
+            },
+            watch:{
+                open(value,old){
+                    console.log(`Watcher ${value} <-- ${old}`)
+                    //console.log(typeof(value))
+                    //debugger
+                    if(value){
+                        this.text="Puerta abierta!"
+                        //this.styles.backgroundColor='#b5e7a0'
+                    }else{
+                        this.text="Puerta cerrada!"
+                        //this.styles.backgroundColor='#eca1a6'
+                    }
+                }
+            },
+            computed:{
+                styles(){
+                    if(this.open){
+                        return ['open']
+                    }else{
+                        return ['closed']
+                    }
+                },
+            },
+            template:`
+            <div :class="styles" >
+                <h2> {{text}} </h2>
+                <div v-if="open">
+                    <p>Hola, {{username}}</p>                    
+                </div>
+                <div v-else>
+                    <label>Username</label>
+                    <input type="text" v-model="username" />
+                </div>
+                <button @click="open=!open">
+                    <div v-if="!open">Acceder</div>
+                    <div v-else>Salir</div>
+                </button>
+            </div>
+
+            `
+        }).mount("#app")
+    </script>
+</body>
+</html>

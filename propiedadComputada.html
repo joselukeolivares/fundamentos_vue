@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"> </div>
+
+    <script>
+        const vm=Vue.createApp({
+            data(){
+                return {
+                    firstName:'Jose Luis',
+                    lastName:'olivares',
+                    now: new Date()
+                }
+            },
+            computed:{
+                fullName(){
+                    return this.firstName+ " " +this.lastName
+                },
+                dateFormatted(){
+                    return this.now.toLocaleDateString()
+                }
+            },
+            template:`
+                <div>{{fullName}}</div>
+                <div>{{dateFormatted}}</div>
+            `
+        }).mount("#app")
+    </script>
+</body>
+</html>
